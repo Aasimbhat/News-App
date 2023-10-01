@@ -245,7 +245,7 @@ FilterList? selectedMenu;
                                         height: height*.18,
                                         width: width*.3,
                                         placeholder: (context, url) => Container(
-                                          child:Center(
+                                          child:const Center(
                                                       child: SpinKitCircle(
                                                         color: Colors.blue,
                                                         size: 50,
