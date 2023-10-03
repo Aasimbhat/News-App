@@ -40,6 +40,7 @@ dependencies:
   http: ^0.13.5
   intl:
   cached_network_image:
+  lottie: ^1.2.1
  
 
 
