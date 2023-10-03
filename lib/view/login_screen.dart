@@ -104,14 +104,14 @@ class _LogInScreenState extends State<LogInScreen> {
 
               ),
               TextButton(onPressed: (){
-              
+                   Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUpScreen()));
+
                 }, child: Text('Dont have an account Sign up',
                  style: GoogleFonts.poppins(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.black)
                 )
                 ),
                 InkWell(
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUpScreen()));
                   },
                   child: Container(
                     height: 60,
