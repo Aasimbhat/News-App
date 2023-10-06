@@ -9,7 +9,7 @@ import 'package:news_app/models/sample_news_model.dart';
 import 'package:news_app/utlis/Utlis.dart';
 import 'package:news_app/view/categories.dart';
 import 'package:news_app/view/login_screen.dart';
-import 'package:news_app/view/sample.dart';
+import 'package:news_app/view/news_detail_page.dart';
 import 'package:news_app/view_model/news_view_model.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -113,16 +113,15 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(colors: [
-            Color(0xFFFC00FF),
-            Color(0xFF00DBDE),
+             Color(0xFFFFBBEC),
+                  Color(0xFFA9C9FF),
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
         ),
         child: ListView(
           children: [
             InkWell(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => SamplePage())));
+             
               },
               child: Container(
                 margin: const EdgeInsets.only(top: 20),
@@ -146,120 +145,152 @@ class _HomeScreenState extends State<HomeScreen> {
                               DateTime dateTime = DateTime.parse(snapshot
                                   .data!.articles![index].publishedAt
                                   .toString());
-                              return SizedBox(
-                                child: Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    Container(
-                                      height: height * 0.6,
-                                      width: width * .9,
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: height * .02),
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(15),
-                                        child: CachedNetworkImage(
-                                          imageUrl: snapshot
-                                              .data!.articles![index].urlToImage
-                                              .toString(),
-                                          fit: BoxFit.cover,
-                                          placeholder: (context, url) =>
-                                              Container(
-                                            child: spinkit2,
-                                          ),
-                                          errorWidget: (context, url, error) =>
-                                              Icon(
-                                            Icons.error_outline,
-                                            color: Colors.red,
+                              return InkWell(
+                                onTap: (){
+                                     Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => NewsDetailScreen(
+                      author: snapshot
+                                  .data!.articles![index].author
+                                  .toString(),
+                     content: snapshot
+                                  .data!.articles![index].content
+                                  .toString(),
+                      newsDate: snapshot
+                                  .data!.articles![index].publishedAt
+                                  .toString(), 
+                      description: snapshot
+                                  .data!.articles![index].description
+                                  .toString(),
+                       newsImage: snapshot
+                                  .data!.articles![index].urlToImage
+                                  .toString(),
+                        newsTitle: snapshot
+                                  .data!.articles![index].title
+                                  .toString(),
+                         source: snapshot
+                                  .data!.articles![index].source!.name
+                                  .toString(),
+                         )
+                         )
+                         )
+                         );
+
+                                },
+                                child: SizedBox(
+                                  child: Stack(
+                                    alignment: Alignment.center,
+                                    children: [
+                                      Container(
+                                        height: height * 0.6,
+                                        width: width * .9,
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: height * .02),
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(15),
+                                          child: CachedNetworkImage(
+                                            imageUrl: snapshot
+                                                .data!.articles![index].urlToImage
+                                                .toString(),
+                                            fit: BoxFit.cover,
+                                            placeholder: (context, url) =>
+                                                Container(
+                                              child: spinkit2,
+                                            ),
+                                            errorWidget: (context, url, error) =>
+                                                Icon(
+                                              Icons.error_outline,
+                                              color: Colors.red,
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                    Positioned(
-                                      bottom: 20,
-                                      child: Card(
-                                        elevation: 5,
-                                        color: Colors.white,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
-                                        ),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            gradient: LinearGradient(
-                                                colors: [
-                                                  Color(0xFFEE74E1),
-                                                  Color(0xFF3EECAC),
-                                                ],
-                                                begin: Alignment.topCenter,
-                                                end: Alignment.bottomCenter),
+                                      Positioned(
+                                        bottom: 20,
+                                        child: Card(
+                                          elevation: 5,
+                                          color: Colors.white,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(12),
                                           ),
-                                          height: height * 0.22,
-                                          alignment: Alignment.bottomCenter,
-                                          padding: EdgeInsets.all(15),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                width: width * 0.7,
-                                                child: Text(
-                                                    snapshot.data!
-                                                        .articles![index].title
-                                                        .toString(),
-                                                    maxLines: 2,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    style: GoogleFonts.poppins(
-                                                        fontSize: 17,
-                                                        fontWeight:
-                                                            FontWeight.bold)),
-                                              ),
-                                              Spacer(),
-                                              Container(
-                                                width: width * 0.7,
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                        snapshot
-                                                            .data!
-                                                            .articles![index]
-                                                            .source!
-                                                            .name
-                                                            .toString(),
-                                                        maxLines: 2,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        style:
-                                                            GoogleFonts.poppins(
-                                                                fontSize: 13,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600)),
-                                                    Text(
-                                                        format.format(dateTime),
-                                                        maxLines: 2,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        style:
-                                                            GoogleFonts.poppins(
-                                                                fontSize: 12,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500)),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                  colors: [
+                                                   Color(0xFFFFBBEC),
+                  Color(0xFFA9C9FF),
                                                   ],
+                                                  begin: Alignment.topCenter,
+                                                  end: Alignment.bottomCenter),
+                                            ),
+                                            height: height * 0.22,
+                                            alignment: Alignment.bottomCenter,
+                                            padding: EdgeInsets.all(15),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                  width: width * 0.7,
+                                                  child: Text(
+                                                      snapshot.data!
+                                                          .articles![index].title
+                                                          .toString(),
+                                                      maxLines: 2,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      style: GoogleFonts.poppins(
+                                                          fontSize: 17,
+                                                          fontWeight:
+                                                              FontWeight.bold)),
                                                 ),
-                                              )
-                                            ],
+                                                Spacer(),
+                                                Container(
+                                                  width: width * 0.7,
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Text(
+                                                          snapshot
+                                                              .data!
+                                                              .articles![index]
+                                                              .source!
+                                                              .name
+                                                              .toString(),
+                                                          maxLines: 2,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          style:
+                                                              GoogleFonts.poppins(
+                                                                  fontSize: 13,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600)),
+                                                      Text(
+                                                          format.format(dateTime),
+                                                          maxLines: 2,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          style:
+                                                              GoogleFonts.poppins(
+                                                                  fontSize: 12,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500)),
+                                                    ],
+                                                  ),
+                                                )
+                                              ],
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    )
-                                  ],
+                                      )
+                                    ],
+                                  ),
                                 ),
                               );
                             });

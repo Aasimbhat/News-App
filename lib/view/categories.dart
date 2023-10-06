@@ -42,8 +42,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
         gradient: LinearGradient(
           colors: [
            
-            Color(0xFFFC00FF),
-            Color(0xFF00DBDE),
+           Color(0xFFFFBBEC),
+                  Color(0xFFA9C9FF),
             
 
           ],
