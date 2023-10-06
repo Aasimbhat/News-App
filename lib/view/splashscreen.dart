@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:news_app/firebase_services/splash_services.dart';
 import 'package:news_app/view/homescreen.dart';
 import 'package:news_app/view/login_screen.dart';
 
@@ -13,15 +14,17 @@ class SplashScreen extends StatefulWidget {
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
+SplashService splashService=SplashService();
 @override
 
 
 class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 2),(){
-      Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>const LogInScreen() ));
-    });
+    // Timer(const Duration(seconds: 6),(){
+    //   Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>const LogInScreen() ));
+    // });
+    splashService.isLogin(BuildContext ,context);
   }
   @override
   Widget build(BuildContext context) {

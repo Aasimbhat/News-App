@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "372641967392",
+    "project_id": "quick-news-8517e",
+    "storage_bucket": "quick-news-8517e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:372641967392:android:d771597b9b005761c2fb45",
+        "android_client_info": {
+          "package_name": "com.example.news_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBP1HQ4zlyVvDEnofoio1CuVQh90_4H7qY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

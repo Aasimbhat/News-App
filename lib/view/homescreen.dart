@@ -1,11 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:news_app/models/news_channel_headline_model.dart';
 import 'package:news_app/models/sample_news_model.dart';
+import 'package:news_app/utlis/Utlis.dart';
 import 'package:news_app/view/categories.dart';
+import 'package:news_app/view/login_screen.dart';
 import 'package:news_app/view/sample.dart';
 import 'package:news_app/view_model/news_view_model.dart';
 
@@ -20,7 +23,7 @@ enum FilterList { bbcNews, aryNews, independent, reuters, cnn, aljazeera }
 
 class _HomeScreenState extends State<HomeScreen> {
   NewsViewModel newsViewModel = NewsViewModel();
-
+  final auth=FirebaseAuth.instance;
   FilterList? selectedMenu;
   final format = DateFormat('MMMM dd,yyyy');
   String name = 'bbc-news';
@@ -55,6 +58,16 @@ class _HomeScreenState extends State<HomeScreen> {
               width: 30,
             )),
         actions: [
+          IconButton(onPressed: (){
+             auth.signOut().then((value){
+           Navigator.push(context, MaterialPageRoute(builder: (context)=>LogInScreen()));
+
+             }).onError((error, stackTrace){
+              Utlis().toastMessage(error.toString());
+             });
+          },
+           icon: Icon(Icons.logout,color: Colors.black),),
+          SizedBox(width: 10,),
           PopupMenuButton<FilterList>(
               icon: Icon(
                 Icons.more_vert,
@@ -112,6 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     MaterialPageRoute(builder: ((context) => SamplePage())));
               },
               child: Container(
+                margin: const EdgeInsets.only(top: 20),
                 height: height * .55,
                 width: width,
                 child: FutureBuilder<NewsChannelHeadlineModel>(
