@@ -8,6 +8,7 @@ import 'package:news_app/view/forgot_password.dart';
 import 'package:news_app/view/homescreen.dart';
 import 'package:news_app/view/login_phone.dart';
 import 'package:news_app/view/signup_screen.dart';
+import 'package:news_app/widgets/Round_button.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({super.key});
@@ -21,6 +22,7 @@ class _LogInScreenState extends State<LogInScreen> {
   final passwordcontroller = TextEditingController();
   final _formfield = GlobalKey<FormState>();
   final _auth=FirebaseAuth.instance;
+  // bool loading=false;
   
   @override
   void dispose() {
@@ -196,6 +198,32 @@ class _LogInScreenState extends State<LogInScreen> {
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
                             color: Colors.black))),
+
+                      //       RoundButton(
+                      //         loading: loading,
+                      //         onTap: (){
+                      //       if(_formfield.currentState!.validate()){
+                        
+                      // }
+                      // _auth.signInWithEmailAndPassword(email: emailcontroller.text.toString(), 
+                      // password: passwordcontroller.text.toString()).then((value) {
+                      //  Utlis().toastMessage('Welcome to quick news');
+                      //   Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
+                      //   setState(() {
+                      //     loading=true;
+                      //   });
+
+                      // }).onError((error, stackTrace) {
+                      // Utlis().toastMessage(error.toString());
+                      // setState(() {
+                      //   loading=false;
+                      // });
+                      // });
+
+                      //       },
+                      //       title: 'Login',
+                            
+                      //       ),
                 InkWell(
                   onTap: () {
                       if(_formfield.currentState!.validate()){

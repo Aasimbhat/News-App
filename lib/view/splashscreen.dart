@@ -21,9 +21,7 @@ SplashService splashService=SplashService();
 class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
-    // Timer(const Duration(seconds: 6),(){
-    //   Navigator.pushReplacement(context, MaterialPageRoute(builder:(context)=>const LogInScreen() ));
-    // });
+  
     splashService.isLogin(BuildContext ,context);
   }
   @override
@@ -35,10 +33,9 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [
-           
-            Color(0xFFFC00FF),
-            Color(0xFF00DBDE),
+          colors: [           
+           Color(0xFFFFBBEC),
+                Color(0xFFA9C9FF),
             
 
           ],
