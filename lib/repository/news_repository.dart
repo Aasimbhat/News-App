@@ -36,9 +36,7 @@ class NewsRepository{
   Future<sampleText> sampleTextApi(String general) async{
   String url="https://newsapi.org/v2/everything?q=${general}&apiKey=317e185eb1d5442da43b35418ef15b0c";
   final response=await http.get(Uri.parse(url));
-  if(kDebugMode){
-      print(response.body);
- }
+  
 
  
   

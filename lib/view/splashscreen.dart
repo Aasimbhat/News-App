@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:news_app/firebase_services/notification_services.dart';
 import 'package:news_app/firebase_services/splash_services.dart';
 import 'package:news_app/view/homescreen.dart';
 import 'package:news_app/view/login_screen.dart';
@@ -19,10 +20,20 @@ SplashService splashService=SplashService();
 
 
 class _SplashScreenState extends State<SplashScreen> {
+      NotificationServices notificationServices=NotificationServices();
+
   void initState() {
     super.initState();
+
+
   
     splashService.isLogin(BuildContext ,context);
+    notificationServices.requestNotificationPermission();
+    notificationServices.isTokenRefresh();
+    notificationServices.getDeviceToken().then((value) {
+      print('device token');
+print(value);
+    });
   }
   @override
   Widget build(BuildContext context) {

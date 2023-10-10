@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:news_app/firebase_services/notification_services.dart';
 import 'package:news_app/models/news_channel_headline_model.dart';
 import 'package:news_app/models/sample_news_model.dart';
 import 'package:news_app/utlis/Utlis.dart';
@@ -22,6 +23,7 @@ class HomeScreen extends StatefulWidget {
 enum FilterList { bbcNews, aryNews, independent, reuters, cnn, aljazeera }
 
 class _HomeScreenState extends State<HomeScreen> {
+  
   NewsViewModel newsViewModel = NewsViewModel();
   final auth=FirebaseAuth.instance;
   FilterList? selectedMenu;

@@ -22,7 +22,7 @@ class _LogInScreenState extends State<LogInScreen> {
   final passwordcontroller = TextEditingController();
   final _formfield = GlobalKey<FormState>();
   final _auth=FirebaseAuth.instance;
-  // bool loading=false;
+  bool loading=false;
   
   @override
   void dispose() {
@@ -199,66 +199,69 @@ class _LogInScreenState extends State<LogInScreen> {
                             fontWeight: FontWeight.bold,
                             color: Colors.black))),
 
-                      //       RoundButton(
-                      //         loading: loading,
-                      //         onTap: (){
-                      //       if(_formfield.currentState!.validate()){
-                        
-                      // }
-                      // _auth.signInWithEmailAndPassword(email: emailcontroller.text.toString(), 
-                      // password: passwordcontroller.text.toString()).then((value) {
-                      //  Utlis().toastMessage('Welcome to quick news');
-                      //   Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
-                      //   setState(() {
-                      //     loading=true;
-                      //   });
-
-                      // }).onError((error, stackTrace) {
-                      // Utlis().toastMessage(error.toString());
-                      // setState(() {
-                      //   loading=false;
-                      // });
-                      // });
-
-                      //       },
-                      //       title: 'Login',
-                            
-                      //       ),
-                InkWell(
-                  onTap: () {
-                      if(_formfield.currentState!.validate()){
+                            RoundButton(
+                              loading: loading,
+                              onTap: (){
+                            if(_formfield.currentState!.validate()){
+                                setState(() {
+                  loading=true;
+                });
                         
                       }
                       _auth.signInWithEmailAndPassword(email: emailcontroller.text.toString(), 
                       password: passwordcontroller.text.toString()).then((value) {
                        Utlis().toastMessage('Welcome to quick news');
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
+                        setState(() {
+                          loading=true;
+                        });
 
                       }).onError((error, stackTrace) {
                       Utlis().toastMessage(error.toString());
+                      setState(() {
+                        loading=false;
                       });
-                  },
-                  child: Container(
-                    height: 60,
-                    width: 200,
-                    child: Center(
-                      child: Text('Login',
-                          style: GoogleFonts.poppins(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black)),
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      gradient:  LinearGradient(
-                        colors: [
-                          Color.fromARGB(255, 55, 100, 184),
-                          Color(0xFF00DBDE),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+                      });
+
+                            },
+                            title: 'Login',
+                            
+                            ),
+                // InkWell(
+                //   onTap: () {
+                //       if(_formfield.currentState!.validate()){
+                        
+                //       }
+                //       _auth.signInWithEmailAndPassword(email: emailcontroller.text.toString(), 
+                //       password: passwordcontroller.text.toString()).then((value) {
+                //        Utlis().toastMessage('Welcome to quick news');
+                //         Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
+
+                //       }).onError((error, stackTrace) {
+                //       Utlis().toastMessage(error.toString());
+                //       });
+                //   },
+                //   child: Container(
+                //     height: 60,
+                //     width: 200,
+                //     child: Center(
+                //       child: Text('Login',
+                //           style: GoogleFonts.poppins(
+                //               fontSize: 25,
+                //               fontWeight: FontWeight.bold,
+                //               color: Colors.black)),
+                //     ),
+                //     decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(30),
+                //       gradient:  LinearGradient(
+                //         colors: [
+                //           Color.fromARGB(255, 55, 100, 184),
+                //           Color(0xFF00DBDE),
+                //         ],
+                //       ),
+                //     ),
+                //   ),
+                // ),
                 
               ],
             ),
